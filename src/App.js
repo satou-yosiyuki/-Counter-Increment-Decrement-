@@ -1,11 +1,11 @@
 import React from 'react';
-import Timer from './components/Timer/Timer';
+import Counter from './components/Counter/Counter';
 
 function App() {
   return (
-    <div className='App'>
-     <h1>タイマー</h1>
-     <Timer seconds={30}/>
+    <div>
+     <h1>Hello World</h1>
+     <Counter />
     </div>
   );
 }
