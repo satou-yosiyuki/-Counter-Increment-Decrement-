@@ -1,12 +1,12 @@
 import React from 'react';
-import  './Button.css';
+
 
 class Button extends React.Component{
     render(){
         return(
-         <span className='Button-container'>
-            { this.props.children }
-         </span>   
+            <span>
+                { this.props.children }
+            </span>
         );
     }
 }

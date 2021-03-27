@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Button from '../Button/Button';
 
-class Counter extends React.Component{
+class Counter extends Component{
     constructor(props){
         super(props);
-        this.state={ count: 0};
-        this.handleClick=this.handleClick.bind(this);
+        this.state={
+             count: 0
+            };
     }
-    handleClick(){
-        this.setState({
-            count: this.state.count+1
-        })
-    }
+  increment(){
+      this.setState({
+         count: this.state.count+1
+      });
+  }
+  decrement(){
+    this.setState({
+       count: this.state.count-1
+    });
+}
     render(){
         return(
             <div>
-                <p>{this.state.count}</p>
-                <button onClick={this.handleClick}>インクリメント</button>
+               <p>{ this.state.count }</p>
+               <span onClick={()=>{this.increment()}}>
+               <Button>インクリメント</Button>
+               </span>
+               <span  onClick={()=>{this.decrement()}}>
+               <Button>デクリメント</Button>
+               </span>
             </div>
         );
-    }
+    } 
 }
 
 export default Counter;
