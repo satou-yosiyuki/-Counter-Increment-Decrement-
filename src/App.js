@@ -1,61 +1,34 @@
 import React from 'react';
+import CommentList from './components/CommentList/CommentList'; 
+import Form from './components/Form/Form';
 
 class App extends React.Component{
   constructor(props){
-      super(props);
-      this.state={
-        isLoggedIn: false
-      };
-    }
+    super(props);
 
-    login(){
-      this.setState({isLoggedIn: true});
-    }
+    this.state={
+      comments: ['初期コメント']
+    };
+this.addComment=this.addComment.bind(this);
+  }
+  addComment(comment){
+   this.setState({
+     comments: [...this.state.comments, comment]
+   });
+  }
 
-    logout(){
-      this.setState({isLoggedIn: false});
-    }
-    
   render(){
-      if(this.state.isLoggedIn){
-        return(
-          <div>
-            <PrivatePage />
-            <button onClick={()=> this.logout()}>ログアウト</button>
-          </div>
-        );
-      }
-      return(
-        <div>
-          <PublicPage />
-          <button onClick={()=> this.login()}>ログイン</button>
-        </div>
-      );
-    }
+    return(
+    <div className='App'>
+    <Form onSubmit={(body)=>{
+      console.log('body? : ', body);
+      this.addComment(body);
+    }} />
+    <CommentList comments={this.state.comments} />
+  </div>
+    );
+  }
 }
 
-  export default App;
+export default App;
 
-    const PublicPage=()=>{
-      const style={
-        backgroundColor: '#ff0'
-      };
-
-      return(
-        <div style={style}>
-          <h2>非ログイン時のページ</h2>
-        </div>
-      );
-    };
-
-    const PrivatePage=()=>{
-      const style={
-        backgroundColor: '#0f0'
-      };
-
-      return(
-        <div style={style}>
-          <h2>ログイン時のページ</h2>
-        </div>
-      );
-    };
